@@ -6,7 +6,7 @@ import { AppState, Fixture } from "../../../app.state";
 import { NextFixturesActions } from "app/components/containers/next-fixtures/next-fixtures.actions";
 
 @Component({
-  selector: "next-fixtures-container",
+  selector: "app-next-fixtures-container",
   templateUrl: "./next-fixtures.component.html",
   styleUrls: ["./next-fixtures.component.scss"],
 })

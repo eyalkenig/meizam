@@ -6,7 +6,7 @@ import { AppState, Fixture, Prediction } from "../../../app.state";
 import { OpenPredictionsActions } from "app/components/containers/open-predictions/open-predictions.actions";
 
 @Component({
-  selector: "open-predictions-container",
+  selector: "app-open-predictions-container",
   templateUrl: "./open-predictions.component.html",
   styleUrls: ["./open-predictions.component.scss"],
 })
