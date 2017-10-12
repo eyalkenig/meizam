@@ -1,0 +1,10 @@
+<div class='open-predictions-container'>
+  <div *ngFor="let openPrediction of openPredictions$ | async; let i = index">
+    Date: {{ openPrediction.fixture.date }}
+    Leauge: {{ openPrediction.fixture.leauge }}
+    Home Team: {{ openPrediction.fixture.homeTeam }}
+    Home Team Score Prediction: {{ openPrediction.homeTeamScore }}
+    Away Team: {{ openPrediction.fixture.awayTeam }}
+    Away Team Score Prediction: {{ openPrediction.awayTeamScore }}
+  </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "next-fixtures": [
+    {
+      "homeTeam": {
+        "name": "Maccabi Haifa",
+        "logoUrl": "http://images.one.co.il/images/teams/logos_111x111/4.gif"
+      },
+      "awayTeam": {
+        "name": "Maccabi Tel-Aviv",
+        "logoUrl": "http://images.one.co.il/images/teams/logos_111x111/3.gif"
+      },
+      "leauge": "Israeli Winner League",
+      "date": "10-17-2017"
+    },
+    {
+      "homeTeam": {
+        "name": "Hapoel Ashkelon",
+        "logoUrl": "http://images.one.co.il/images/teams/logos_111x111/34.gif"
+      },
+      "awayTeam": {
+        "name": "Beitar Jerusalem",
+        "logoUrl": "http://images.one.co.il/images/teams/logos_111x111/2.gif"
+      },
+      "leauge": "Israeli Winner League",
+      "date": "10-17-2017"
+    }
+  ]
+}

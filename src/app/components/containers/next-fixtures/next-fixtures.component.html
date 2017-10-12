@@ -1,0 +1,12 @@
+<div class='next-fixtures-container'>
+  <div *ngFor="let nextFixture of nextFixtures$ | async; let i = index">
+    <br/>
+    Date: {{ nextFixture.date }}
+    <br/>
+    Leauge: {{ nextFixture.leauge }}
+    <br/>
+    Home Team: {{ nextFixture.homeTeam.name }}
+    <br/>
+    Away Team: {{ nextFixture.awayTeam.name }}
+  </div>
+</div>
