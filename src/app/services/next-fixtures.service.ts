@@ -9,12 +9,12 @@ import { NextFixturesActions } from "app/components/containers/next-fixtures/nex
 export class NextFixturesService {
 
   constructor(
-    private dataService: ApiService,
+    private apiService: ApiService,
     private ngRedux: NgRedux<AppState>,
     private actions: NextFixturesActions) {}
 
   public fetchNextFixtures(): void {
-    this.dataService.fetchNextFixtures().subscribe(res => {
+    this.apiService.fetchNextFixtures().subscribe(res => {
       const nextFixtures = res;
       this.fetchNextFixutresSuccess(nextFixtures);
     })
