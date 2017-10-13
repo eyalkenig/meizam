@@ -17,7 +17,9 @@ export class NextFixturesService {
     this.apiService.fetchNextFixtures().subscribe(res => {
       const nextFixtures = res;
       this.fetchNextFixutresSuccess(nextFixtures);
-    })
+    }, error => {
+      this.fetchNextFixutresFail(error);
+    });
   }
 
   fetchNextFixutresSuccess(fixtures: Fixture[]): void {
