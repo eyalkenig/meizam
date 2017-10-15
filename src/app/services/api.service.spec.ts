@@ -4,6 +4,8 @@ import { ApiService } from "app/services/api.service";
 import { HttpTestingController } from "@angular/common/http/testing";
 import { inject } from "@angular/core/testing";
 import { environment } from "environments/environment";
+import { AuthenticationService } from "app/services/authentication.service";
+import { AuthenticationServiceMock } from "app/services/mocks/authentication.service.mock";
 
 describe("ApiService", () => {
 
@@ -13,7 +15,11 @@ describe("ApiService", () => {
         HttpClientTestingModule
       ],
       providers: [
-        ApiService
+        ApiService,
+        {
+          provide: AuthenticationService,
+          useClass: AuthenticationServiceMock
+        }
       ]
     });
   });

@@ -14,6 +14,37 @@ export function NextFixturesReducer(lastState: NextFixturesState, action: IActio
     case NextFixturesActions.fetchNextFixturesFail:
       alert("Failed to fetch fixtures.");
       break;
+    case NextFixturesActions.submitPredictionStarted:
+      return updateFixtureSubmitted(lastState, action.payload.fixture.id, getSubmissionState(false, true));
+    case NextFixturesActions.submitPredictionSuccess:
+      return updateFixtureSubmitted(lastState, action.payload.fixture.id, getSubmissionState(true, false));
+    case NextFixturesActions.submitPredictionFail:
+      return updateFixtureSubmitted(lastState, action.payload.prediction.fixture.id, getSubmissionState(false, false));
   }
   return lastState;
+}
+
+function updateFixtureSubmitted(lastState: NextFixturesState, fixtureId: string, keyValues: KeyValue[]): NextFixturesState {
+  const raw  = lastState.raw.slice(0);
+  const index = raw.findIndex(fixture => fixture.id === fixtureId);
+  keyValues.forEach(keyVal => {
+    raw[index][keyVal.key] = keyVal.value;
+  })
+  return { raw }
+}
+
+function getSubmissionState(submitted: boolean, submitting: boolean) {
+  return [{
+    key: "submitted",
+    value: submitted
+  },
+  {
+    key: "submitting",
+    value: submitting
+  }];
+}
+
+interface KeyValue {
+  key: string,
+  value: any
 }

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { LocalStorageService } from "app/services/local-storage.service.1";
+import { LocalStorageService } from "app/services/local-storage.service";
 
 @Injectable()
 export class AuthenticationService {

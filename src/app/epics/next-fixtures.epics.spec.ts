@@ -6,6 +6,7 @@ import { inject } from "@angular/core/testing";
 import { NextFixturesActions } from "app/components/containers/next-fixtures/next-fixtures.actions";
 import { ActionsObservable } from "redux-observable";
 import * as assert from "assert";
+import { AppActions } from "app/app.acions";
 
 describe("NextFixturesEpics", () => {
 
@@ -14,6 +15,7 @@ describe("NextFixturesEpics", () => {
       providers: [
         NextFixturesEpics,
         NextFixturesActions,
+        AppActions,
         {
           provide: NextFixturesService,
           useClass: NextFixturesServiceMock

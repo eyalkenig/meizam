@@ -7,8 +7,11 @@ import { NextFixturesService } from "app/services/next-fixtures.service";
 import { inject } from "@angular/core/testing";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/of";
-import { Fixture, AppState } from "app/app.state";
+import { Fixture, AppState, PredictionType } from "app/app.state";
 import { NgRedux } from "@angular-redux/store";
+import { AppActions } from "app/app.acions";
+import { AuthenticationService } from "app/services/authentication.service";
+import { AuthenticationServiceMock } from "app/services/mocks/authentication.service.mock";
 
 describe("NextFixturesService", () => {
 
@@ -18,6 +21,7 @@ describe("NextFixturesService", () => {
         NextFixturesService,
         NgReduxTestingModule,
         NextFixturesActions,
+        AppActions,
         {
           provide: NgRedux,
           useClass: MockNgRedux
@@ -46,10 +50,13 @@ describe("NextFixturesService", () => {
         (nextFixturesService: NextFixturesService, apiService: ApiService, nextFixturesActions: NextFixturesActions,
           mockNgRedux: MockNgRedux) => {
           const expectedResult: Fixture[] = [{
+            id: "an-id",
             leauge: { name: "a league", started_at: new Date() },
             time: new Date(),
             homeTeam: { name: "a team", logoUrl: "logo1" },
-            awayTeam: { name: "b team", logoUrl: "logo2" }
+            awayTeam: { name: "b team", logoUrl: "logo2" },
+            host: { name: "a name" },
+            prediction_type: PredictionType.OneXTwo
           }];
           const expectedAction = nextFixturesActions.fetchNextFixturesSuccess(expectedResult);
           spyOn(apiService, "fetchNextFixtures").and.returnValue(Observable.of(expectedResult));

@@ -6,19 +6,38 @@ export interface League {
   name: string;
   started_at: Date;
 }
+export interface Host {
+  name: string;
+}
+export interface OneXTwoBet {
+  type: string;
+  result: string;
+}
+export enum PredictionType {
+  OneXTwo = 1
+}
 export interface Fixture {
+  id: string;
+  host: Host,
   leauge: League,
   time: Date,
   homeTeam: Team,
-  awayTeam: Team
+  awayTeam: Team,
+  prediction_type: PredictionType;
+  submitting?: boolean;
+  submitted?: boolean;
 }
 export interface NextFixturesState {
   raw: Fixture[];
 }
+export interface UserPrediction {
+  user_id: string,
+  prediction: Prediction
+}
 export interface Prediction {
   fixture: Fixture;
-  homeTeamScore: number;
-  awayTeamScore: number;
+  result: any;
+  prediction_type: PredictionType;
 }
 export interface OpenPredictionsState {
   raw: Prediction[];
