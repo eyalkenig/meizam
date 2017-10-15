@@ -1,6 +1,7 @@
 {
   "next-fixtures": [
     {
+      "id": "1",
       "homeTeam": {
         "name": "Maccabi Haifa",
         "logoUrl": "http://images.one.co.il/images/teams/logos_111x111/4.gif"
@@ -10,9 +11,15 @@
         "logoUrl": "http://images.one.co.il/images/teams/logos_111x111/3.gif"
       },
       "leauge": "Israeli Winner League",
-      "date": "10-17-2017"
+      "date": "10-17-2017 20:00",
+      "host": {
+        "name": "@eyalkenig"
+      },
+      "prediction_type": 1,
+      "submitted": false
     },
     {
+      "id": "2",
       "homeTeam": {
         "name": "Hapoel Ashkelon",
         "logoUrl": "http://images.one.co.il/images/teams/logos_111x111/34.gif"
@@ -22,7 +29,18 @@
         "logoUrl": "http://images.one.co.il/images/teams/logos_111x111/2.gif"
       },
       "leauge": "Israeli Winner League",
-      "date": "10-17-2017"
+      "date": "10-17-2017 19:30",
+      "host": {
+        "name": "@ronbarab"
+      },
+      "prediction_type": 1,
+      "submitted": false
     }
-  ]
+  ],
+  "uesrs": [
+    {
+      "id": "1"
+    }
+  ],
+  "predictions": []
 }
