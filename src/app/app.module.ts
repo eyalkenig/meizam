@@ -18,12 +18,18 @@ import { NextFixturesComponent } from "app/components/containers/next-fixtures/n
 import { NextFixturesActions } from "app/components/containers/next-fixtures/next-fixtures.actions";
 import { RootEpic } from "app/epics/root.epics";
 import { NextFixturesEpics } from "app/epics/next-fixtures.epics";
-
+import { NextFixtureComponent } from "app/components/widgets/next-fixture/next-fixture.component";
+import { FixtureTeamComponent } from "app/components/widgets/fixture-team/fixture-team.component";
+import { AuthenticationService } from "app/services/authentication.service";
+import { LocalStorageService } from "app/services/local-storage.service";
+import { AppActions } from "app/app.acions";
 
 @NgModule({
   declarations: [
     AppComponent,
-    NextFixturesComponent
+    NextFixturesComponent,
+    NextFixtureComponent,
+    FixtureTeamComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -37,6 +43,9 @@ import { NextFixturesEpics } from "app/epics/next-fixtures.epics";
     NgReduxRouter,
     ApiService,
     RootEpic,
+    AppActions,
+    AuthenticationService,
+    LocalStorageService,
 
     /* NextFixtures */
     NextFixturesService,

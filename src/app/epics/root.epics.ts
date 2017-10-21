@@ -10,7 +10,7 @@ export class RootEpic {
   getRootEpic(): EpicMiddleware<Action, {}, any> {
     return createEpicMiddleware(
       combineEpics(
-        this.nextFixturesEpics.fetchNextFixtures
+        ...this.nextFixturesEpics.getEpics()
       )
     )
   }

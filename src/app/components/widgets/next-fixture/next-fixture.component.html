@@ -1,0 +1,50 @@
+<div class="fixture">
+    <div class="card mb-3">
+        <div class="card-header">
+            <label class="header-text">hosted by {{ fixture.host.name }}<span class="badge badge-pill badge-warning ml-1">1 X 2 Game</span></label>
+        </div>
+        <div class="card-img-top pt-3 d-flex justify-content-center">
+          <div class="col-5-sm mr-5">
+            <fixture-team [team]="fixture.homeTeam"></fixture-team>
+          </div>
+          <div class="col-2-sm">
+            <table style="height: 100%;">
+              <tbody>
+                <tr>
+                  <td class="align-middle text-center">
+                    <div class="fixture-date">
+                      <label class="font-italic">{{ fixture.date }}</label>
+                    </div>
+                    <div class="fixture-leauge">
+                        <label>{{ fixture.leauge }}</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-5-sm ml-5">
+              <fixture-team [team]="fixture.awayTeam"></fixture-team>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title text-center">Who will win?<span class="badge badge-pill badge-warning ml-1">(1 X 2)</span></h5>
+          <div class="cta text-center">
+            <div class="spinner" [hidden]="!fixture.submitting">
+                <i class="fa fa-spinner" aria-hidden="true"></i>
+            </div>
+            <div [hidden]="!alreadySelected || fixture.submitted || fixture.submitting">
+                <label><i class="fa fa-thumbs-down failed mr-2" aria-hidden="true"></i>we have failed to save :( please try again.</label>
+            </div>
+            <div [hidden]="fixture.submitted">
+              <button type="button" (click)="select('1')" class="btn btn-outline-primary click-here">{{ fixture.homeTeam.name }}</button>
+              <button type="button" (click)="select('x')" class="btn btn-outline-secondary click-here">Draw</button>
+              <button type="button" (click)="select('2')" class="btn btn-outline-primary click-here">{{ fixture.awayTeam.name }}</button>
+            </div>
+            <div class="got-it-wrapper" [hidden]="!alreadySelected || !fixture.submitted">
+              <label><i class="fa fa-check got-it mr-2" aria-hidden="true"></i>GOT IT!</label>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
