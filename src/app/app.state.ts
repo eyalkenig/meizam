@@ -37,7 +37,6 @@ export interface UserPrediction {
 export interface Prediction {
   fixture: Fixture;
   result: any;
-  prediction_type: PredictionType;
 }
 export interface OpenPredictionsState {
   raw: Prediction[];

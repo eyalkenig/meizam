@@ -95,8 +95,7 @@ describe("NextFixturesService", () => {
     };
     const prediction: Prediction = {
       fixture: fixture,
-      result: "1",
-      prediction_type: PredictionType.OneXTwo
+      result: "1"
     };
     it("should submit prediction to api service", function () {
       inject([NextFixturesService, ApiService],

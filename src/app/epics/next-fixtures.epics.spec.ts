@@ -67,8 +67,7 @@ describe("NextFixturesEpics", () => {
     };
     const prediction: Prediction = {
       fixture: fixture,
-      result: "1",
-      prediction_type: PredictionType.OneXTwo
+      result: "1"
     };
     it("should start submit prediction", function (done) {
       inject([NextFixturesEpics, NextFixturesService, NextFixturesActions],
@@ -99,8 +98,7 @@ describe("NextFixturesEpics", () => {
     };
     const prediction: Prediction = {
       fixture: fixture,
-      result: "1",
-      prediction_type: PredictionType.OneXTwo
+      result: "1"
     };
     it("should submit prediction", function (done) {
       inject([NextFixturesEpics, NextFixturesService, NextFixturesActions],
