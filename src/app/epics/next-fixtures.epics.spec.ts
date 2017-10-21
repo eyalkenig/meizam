@@ -7,6 +7,7 @@ import { NextFixturesActions } from "app/components/containers/next-fixtures/nex
 import { ActionsObservable } from "redux-observable";
 import * as assert from "assert";
 import { AppActions } from "app/app.acions";
+import { Fixture, Prediction, PredictionType } from "app/app.state";
 
 describe("NextFixturesEpics", () => {
 
@@ -30,8 +31,8 @@ describe("NextFixturesEpics", () => {
           (nextFixturesEpics: NextFixturesEpics, nextFixturesService: NextFixturesService, nextFixturesActions: NextFixturesActions) => {
               const filters = {};
               const action$ = ActionsObservable.of(nextFixturesActions.fetchNextFixtures());
-
               spyOn(nextFixturesService, "fetchNextFixtures");
+
               nextFixturesEpics.fetchNextFixtures(action$)
                   .subscribe(actualOutputAction => {
                       expect(nextFixturesService.fetchNextFixtures).toHaveBeenCalled();
@@ -52,6 +53,68 @@ describe("NextFixturesEpics", () => {
                   });
           })();
     });
+  });
 
+  describe("predictionSelected", () => {
+    const fixture: Fixture = {
+      id: "an-id",
+      leauge: { name: "a league", started_at: new Date() },
+      time: new Date(),
+      homeTeam: { name: "a team", logoUrl: "logo1" },
+      awayTeam: { name: "b team", logoUrl: "logo2" },
+      host: { name: "a name" },
+      prediction_type: PredictionType.OneXTwo
+    };
+    const prediction: Prediction = {
+      fixture: fixture,
+      result: "1",
+      prediction_type: PredictionType.OneXTwo
+    };
+    it("should start submit prediction", function (done) {
+      inject([NextFixturesEpics, NextFixturesService, NextFixturesActions],
+          (nextFixturesEpics: NextFixturesEpics, nextFixturesService: NextFixturesService, nextFixturesActions: NextFixturesActions) => {
+              const filters = {};
+              const action$ = ActionsObservable.of(nextFixturesActions.predictionSelected(prediction));
+
+              const expectedAction = nextFixturesActions.submitPredictionStarted(prediction);
+
+              nextFixturesEpics.predictionSelected(action$)
+                  .subscribe(actualOutputAction => {
+                      expect(actualOutputAction).toEqual(expectedAction);
+                      done();
+                  });
+          })();
+    });
+  });
+
+  describe("submitPredictionStarted", () => {
+    const fixture: Fixture = {
+      id: "an-id",
+      leauge: { name: "a league", started_at: new Date() },
+      time: new Date(),
+      homeTeam: { name: "a team", logoUrl: "logo1" },
+      awayTeam: { name: "b team", logoUrl: "logo2" },
+      host: { name: "a name" },
+      prediction_type: PredictionType.OneXTwo
+    };
+    const prediction: Prediction = {
+      fixture: fixture,
+      result: "1",
+      prediction_type: PredictionType.OneXTwo
+    };
+    it("should submit prediction", function (done) {
+      inject([NextFixturesEpics, NextFixturesService, NextFixturesActions],
+          (nextFixturesEpics: NextFixturesEpics, nextFixturesService: NextFixturesService, nextFixturesActions: NextFixturesActions) => {
+              const filters = {};
+              const action$ = ActionsObservable.of(nextFixturesActions.submitPredictionStarted(prediction));
+              spyOn(nextFixturesService, "submitPrediction");
+
+              nextFixturesEpics.submitPredictionStarted(action$)
+                  .subscribe(actualOutputAction => {
+                      expect(nextFixturesService.submitPrediction).toHaveBeenCalledWith(prediction);
+                      done();
+                  });
+          })();
+    });
   });
 });
