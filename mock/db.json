@@ -34,13 +34,23 @@
         "name": "@ronbarab"
       },
       "prediction_type": 1,
-      "submitted": false
+      "submitted": false,
+      "my_prediction": {
+        "result": "x"
+      }
     }
   ],
-  "uesrs": [
+  "users": [
     {
       "id": "1"
     }
   ],
-  "predictions": []
+  "predictions": [
+    {
+      "id": "1123",
+      "fixture_id": "2",
+      "result": "2",
+      "userId": "1"
+    }
+  ]
 }
