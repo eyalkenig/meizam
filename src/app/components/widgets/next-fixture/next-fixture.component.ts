@@ -22,7 +22,6 @@ export class NextFixtureComponent {
     this.alreadySelected = true;
     const prediction: Prediction = {
       fixture: this.fixture,
-      prediction_type: PredictionType.OneXTwo,
       result: result
     }
     this.resultSelected.emit(prediction);

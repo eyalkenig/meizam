@@ -13,3 +13,20 @@
 .got-it-wrapper {
   transition: display 1s;
 }
+
+.already-selected {
+  color: white;
+  border-color: #000000;
+}
+
+.selected-1 {
+  background-color: #39bf22;
+}
+
+.selected-x {
+  background-color: #868e96;
+}
+
+.selected-2 {
+  background-color: #c33737;
+}

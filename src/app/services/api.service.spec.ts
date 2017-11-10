@@ -54,8 +54,7 @@ describe("ApiService", () => {
     };
     const prediction: Prediction = {
       fixture: fixture,
-      result: "1",
-      prediction_type: PredictionType.OneXTwo
+      result: "1"
     }
     it("should use current authenticated user id", function () {
       inject([ApiService, HttpTestingController, AuthenticationService],

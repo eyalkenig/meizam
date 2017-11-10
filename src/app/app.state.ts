@@ -18,14 +18,15 @@ export enum PredictionType {
 }
 export interface Fixture {
   id: string;
-  host: Host,
-  leauge: League,
-  time: Date,
-  homeTeam: Team,
-  awayTeam: Team,
+  host: Host;
+  leauge: League;
+  time: Date;
+  homeTeam: Team;
+  awayTeam: Team;
   prediction_type: PredictionType;
   submitting?: boolean;
   submitted?: boolean;
+  my_prediction?: Prediction;
 }
 export interface NextFixturesState {
   raw: Fixture[];
@@ -37,7 +38,6 @@ export interface UserPrediction {
 export interface Prediction {
   fixture: Fixture;
   result: any;
-  prediction_type: PredictionType;
 }
 export interface OpenPredictionsState {
   raw: Prediction[];
