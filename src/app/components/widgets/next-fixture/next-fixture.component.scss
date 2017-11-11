@@ -14,9 +14,13 @@
   transition: display 1s;
 }
 
-.already-selected {
+.selected {
   color: white;
   border-color: #000000;
+}
+
+.click-here:disabled {
+  cursor: default;
 }
 
 .selected-1 {
@@ -29,4 +33,8 @@
 
 .selected-2 {
   background-color: #c33737;
+}
+
+.click-here {
+  cursor: pointer;
 }
