@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgRedux, select } from "@angular-redux/store";
 import { Observable } from "rxjs/Observable";
-
+import { AngularFirestore, AngularFirestoreCollection } from "angularfire2/firestore";
 import { AppState, Fixture, Prediction } from "../../../app.state";
 import { NextFixturesActions } from "app/components/containers/next-fixtures/next-fixtures.actions";
 

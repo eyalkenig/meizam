@@ -5,7 +5,5 @@ import { Prediction } from "app/app.state";
 export class NextFixturesServiceMock {
 
   public fetchNextFixtures(): void {}
-
-  public submitPrediction(prediction: Prediction): void {}
 }
 

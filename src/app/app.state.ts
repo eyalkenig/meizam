@@ -26,14 +26,15 @@ export interface Fixture {
   prediction_type: PredictionType;
   submitting?: boolean;
   submitted?: boolean;
-  my_prediction?: Prediction;
+  my_prediction?: UserPrediction;
 }
 export interface NextFixturesState {
   raw: Fixture[];
 }
 export interface UserPrediction {
-  user_id: string,
-  prediction: Prediction
+  fixtureId: string;
+  result: any,
+  open: boolean
 }
 export interface Prediction {
   fixture: Fixture;

@@ -1,6 +1,6 @@
 import { TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { ApiService } from "app/services/api.service";
+import { MockApiService } from "app/services/mock-api.service";
 import { HttpTestingController } from "@angular/common/http/testing";
 import { inject } from "@angular/core/testing";
 import { environment } from "environments/environment";
@@ -16,19 +16,15 @@ describe("ApiService", () => {
         HttpClientTestingModule
       ],
       providers: [
-        ApiService,
-        {
-          provide: AuthenticationService,
-          useClass: AuthenticationServiceMock
-        }
+        MockApiService
       ]
     });
   });
 
   describe("fetchNextFixtures", () => {
     it("should get the next fixtures from backend url configured in environment", function () {
-      inject([ApiService, HttpTestingController],
-          (apiService: ApiService, httpMock: HttpTestingController) => {
+      inject([MockApiService, HttpTestingController],
+          (apiService: MockApiService, httpMock: HttpTestingController) => {
             environment.backend_url = "http://the/backend/url"
 
             apiService.fetchNextFixtures().subscribe(res => {});
@@ -57,12 +53,11 @@ describe("ApiService", () => {
       result: "1"
     }
     it("should use current authenticated user id", function () {
-      inject([ApiService, HttpTestingController, AuthenticationService],
-          (apiService: ApiService, httpMock: HttpTestingController, authenticationService) => {
-            spyOn(authenticationService, "getUserId").and.returnValue("the-user-id");
+      inject([MockApiService, HttpTestingController],
+          (apiService: MockApiService, httpMock: HttpTestingController) => {
             environment.backend_url = "http://the/backend/url"
 
-            apiService.submitPrediction(prediction).subscribe(res => {});
+            apiService.submitPrediction("the-user-id", prediction).subscribe(res => {});
 
             const req = httpMock.expectOne("http://the/backend/url/users/the-user-id/predictions");
             expect(req).toBeDefined();
@@ -72,11 +67,9 @@ describe("ApiService", () => {
     });
 
     it("should return error if no authenticated user id", function (done) {
-      inject([ApiService, HttpTestingController, AuthenticationService],
-          (apiService: ApiService, httpMock: HttpTestingController, authenticationService) => {
-            spyOn(authenticationService, "getUserId").and.returnValue(null);
-
-            apiService.submitPrediction(prediction).subscribe(res => {}, error => {
+      inject([MockApiService, HttpTestingController],
+          (apiService: MockApiService, httpMock: HttpTestingController) => {
+            apiService.submitPrediction("", prediction).subscribe(res => {}, error => {
               expect(error).toEqual("must have user_id");
               done();
             });
@@ -84,12 +77,11 @@ describe("ApiService", () => {
     });
 
     it("should submit the fixture id and the result", function () {
-      inject([ApiService, HttpTestingController, AuthenticationService],
-          (apiService: ApiService, httpMock: HttpTestingController, authenticationService) => {
-            spyOn(authenticationService, "getUserId").and.returnValue("the-user-id");
+      inject([MockApiService, HttpTestingController],
+          (apiService: MockApiService, httpMock: HttpTestingController) => {
             environment.backend_url = "http://the/backend/url"
 
-            apiService.submitPrediction(prediction).subscribe(res => {});
+            apiService.submitPrediction("the-user-id", prediction).subscribe(res => {});
 
             const req = httpMock.expectOne("http://the/backend/url/users/the-user-id/predictions");
             expect(req).toBeDefined();

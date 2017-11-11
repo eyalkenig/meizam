@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { IAction } from "app/app.module";
-import { Fixture, Prediction } from "app/app.state";
+import { Fixture, Prediction, UserPrediction } from "app/app.state";
 
 @Injectable()
 export class NextFixturesActions {
@@ -12,6 +12,8 @@ export class NextFixturesActions {
   static submitPredictionStarted = "submit prediction started";
   static submitPredictionSuccess = "submit prediction success";
   static submitPredictionFail = "submit prediction fail";
+  static fetchUserOpenPredictions = "fetch user open predictions";
+  static fetchUserOpenPredictionsSuccess = "fetch user open predictions success";
 
   constructor() {}
 
@@ -70,4 +72,18 @@ export class NextFixturesActions {
       }
     }
   }
+
+  fetchUserOpenPredictions(): IAction {
+    return {
+      type: NextFixturesActions.fetchUserOpenPredictions
+    }
+  }
+
+  fetchUserOpenPredictionsSuccess(predictions: UserPrediction[]): IAction {
+    return {
+      type: NextFixturesActions.fetchUserOpenPredictionsSuccess,
+      payload: predictions
+    }
+  }
+
 }

@@ -31,6 +31,9 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { LayoutComponent } from "app/components/containers/layout/layout.component";
 import { AuthMethods, AuthProvider, FirebaseUIAuthConfig, FirebaseUIModule, AuthProviderWithCustomConfig } from 'firebaseui-angular';
 import { environment } from "environments/environment";
+import { AngularFirestore, AngularFirestoreModule } from "angularfire2/firestore";
+import { PredictionsService } from "app/services/predictions.service";
+import { CloudApiService } from "app/services/cloud-api.service";
 
 const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
   providers: [
@@ -58,18 +61,22 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     HttpClientModule,
     NgReduxModule,
     AngularFireModule.initializeApp(environment.firebase.config),
-    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig)
   ],
   providers: [
     AngularFireAuth,
     AuthGuard,
     NgReduxRouter,
-    ApiService,
+    {
+      provide: ApiService,
+      useClass: CloudApiService
+    },
     RootEpic,
     AppActions,
     AuthenticationService,
     LocalStorageService,
+    PredictionsService,
 
     /* NextFixtures */
     NextFixturesService,

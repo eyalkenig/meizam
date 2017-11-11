@@ -8,6 +8,8 @@ import { ActionsObservable } from "redux-observable";
 import * as assert from "assert";
 import { AppActions } from "app/app.acions";
 import { Fixture, Prediction, PredictionType } from "app/app.state";
+import { PredictionsService } from "app/services/predictions.service";
+import { PredictionsServiceMock } from "app/services/mocks/predictions.service.mock";
 
 describe("NextFixturesEpics", () => {
 
@@ -20,6 +22,10 @@ describe("NextFixturesEpics", () => {
         {
           provide: NextFixturesService,
           useClass: NextFixturesServiceMock
+        },
+        {
+          provide: PredictionsService,
+          useClass: PredictionsServiceMock
         }
       ]
     });
@@ -101,18 +107,35 @@ describe("NextFixturesEpics", () => {
       result: "1"
     };
     it("should submit prediction", function (done) {
-      inject([NextFixturesEpics, NextFixturesService, NextFixturesActions],
-          (nextFixturesEpics: NextFixturesEpics, nextFixturesService: NextFixturesService, nextFixturesActions: NextFixturesActions) => {
+      inject([NextFixturesEpics, PredictionsService, NextFixturesActions],
+          (nextFixturesEpics: NextFixturesEpics, predictionsService: PredictionsService, nextFixturesActions: NextFixturesActions) => {
               const filters = {};
               const action$ = ActionsObservable.of(nextFixturesActions.submitPredictionStarted(prediction));
-              spyOn(nextFixturesService, "submitPrediction");
+              spyOn(predictionsService, "submitPrediction");
 
               nextFixturesEpics.submitPredictionStarted(action$)
                   .subscribe(actualOutputAction => {
-                      expect(nextFixturesService.submitPrediction).toHaveBeenCalledWith(prediction);
+                      expect(predictionsService.submitPrediction).toHaveBeenCalledWith(prediction);
                       done();
                   });
           })();
     });
   });
+
+  describe("fetchOpenPredictions", () => {
+    it("should fetch open predictions after fetching next fixtures", function (done) {
+      inject([NextFixturesEpics, PredictionsService, NextFixturesActions],
+          (nextFixturesEpics: NextFixturesEpics, predictionsService: PredictionsService, nextFixturesActions: NextFixturesActions) => {
+              const filters = {};
+              const action$ = ActionsObservable.of(nextFixturesActions.fetchNextFixturesSuccess([]));
+              spyOn(predictionsService, "fetchUserOpenPredictions");
+
+              nextFixturesEpics.fetchOpenPredictions(action$)
+                  .subscribe(actualOutputAction => {
+                      expect(predictionsService.fetchUserOpenPredictions).toHaveBeenCalled();
+                      done();
+                  });
+          })();
+    });
+  })
 });

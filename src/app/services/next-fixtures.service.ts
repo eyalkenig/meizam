@@ -2,31 +2,25 @@ import { Injectable } from "@angular/core";
 import { NgRedux } from "@angular-redux/store";
 import { AppState, Fixture, Prediction } from "app/app.state";
 import { environment } from "environments/environment";
-import { ApiService } from "app/services/api.service";
 import { NextFixturesActions } from "app/components/containers/next-fixtures/next-fixtures.actions";
+import { AngularFirestore } from "angularfire2/firestore";
+import { AuthenticationService } from "app/services/authentication.service";
+import { User } from "firebase/app";
+import { ApiService } from "app/services/api.service";
 
 @Injectable()
 export class NextFixturesService {
 
   constructor(
-    private apiService: ApiService,
     private ngRedux: NgRedux<AppState>,
-    private actions: NextFixturesActions) {}
+    private actions: NextFixturesActions,
+    private apiService: ApiService) {}
 
   public fetchNextFixtures(): void {
-    this.apiService.fetchNextFixtures().subscribe(res => {
-      const nextFixtures = res;
-      this.fetchNextFixutresSuccess(nextFixtures);
+    this.apiService.fetchNextFixtures().subscribe((fixtures: Fixture[]) => {
+      this.fetchNextFixutresSuccess(fixtures);
     }, error => {
       this.fetchNextFixutresFail(error);
-    });
-  }
-
-  public submitPrediction(prediction: Prediction): void {
-    this.apiService.submitPrediction(prediction).subscribe(res => {
-      this.submitPredictionSuccess(prediction);
-    }, error => {
-      this.submitPredictionFail(error, prediction);
     });
   }
 
@@ -37,13 +31,4 @@ export class NextFixturesService {
   fetchNextFixutresFail(error: string): void {
     this.ngRedux.dispatch(this.actions.fetchNextFixturesFail(error));
   }
-
-  submitPredictionSuccess(prediction: Prediction): void {
-    this.ngRedux.dispatch(this.actions.submitPredictionSuccess(prediction));
-  }
-
-  submitPredictionFail(error: string, prediction: Prediction): void {
-    this.ngRedux.dispatch(this.actions.submitPredictionFail(error, prediction));
-  }
 }
-

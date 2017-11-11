@@ -5,11 +5,13 @@ import "rxjs/add/operator/withLatestFrom";
 import { NextFixturesService } from "app/services/next-fixtures.service";
 import { NextFixturesActions } from "app/components/containers/next-fixtures/next-fixtures.actions";
 import { AppActions } from "app/app.acions";
+import { PredictionsService } from "app/services/predictions.service";
 
 @Injectable()
 export class NextFixturesEpics {
     constructor(
       private nextFixturesService: NextFixturesService,
+      private predictionsService: PredictionsService,
       private actions: NextFixturesActions,
       private appActions: AppActions,
     ) {}
@@ -20,6 +22,12 @@ export class NextFixturesEpics {
           return this.actions.fetchNextFixturesStarted();
         });
 
+    fetchOpenPredictions = action$ => action$.ofType(NextFixturesActions.fetchNextFixturesSuccess)
+      .map(action => {
+        this.predictionsService.fetchUserOpenPredictions();
+        return this.appActions.doNothing();
+      })
+
     predictionSelected = action$ => action$.ofType(NextFixturesActions.predictionSelected)
       .map(action => {
         return this.actions.submitPredictionStarted(action.payload);
@@ -27,11 +35,11 @@ export class NextFixturesEpics {
 
     submitPredictionStarted = action$ => action$.ofType(NextFixturesActions.submitPredictionStarted)
       .map(action => {
-        this.nextFixturesService.submitPrediction(action.payload);
+        this.predictionsService.submitPrediction(action.payload);
         return this.appActions.doNothing();
       });
 
     public getEpics(): any {
-      return [this.fetchNextFixtures, this.predictionSelected, this.submitPredictionStarted];
+      return [this.fetchNextFixtures, this.fetchOpenPredictions, this.predictionSelected, this.submitPredictionStarted];
     }
 }
