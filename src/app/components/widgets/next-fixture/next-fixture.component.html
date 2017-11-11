@@ -37,9 +37,9 @@
                 <label><i class="fa fa-thumbs-down failed mr-2" aria-hidden="true"></i>we have failed to save :( please try again.</label>
             </div>
             <div [hidden]="fixture.submitted">
-              <button type="button" (click)="select('1')" class="btn btn-outline-primary click-here" [disabled]="fixture.my_prediction" [ngClass]="{'already-selected selected-1': fixture.my_prediction && fixture.my_prediction.result === '1'}">{{ fixture.homeTeam.name }}</button>
-              <button type="button" (click)="select('x')" class="btn btn-outline-secondary click-here" [disabled]="fixture.my_prediction" [ngClass]="{'already-selected selected-x': fixture.my_prediction && fixture.my_prediction.result === 'x'}" >Draw</button>
-              <button type="button" (click)="select('2')" class="btn btn-outline-primary click-here" [disabled]="fixture.my_prediction" [ngClass]="{'already-selected selected-2': fixture.my_prediction && fixture.my_prediction.result === '2'}">{{ fixture.awayTeam.name }}</button>
+              <button type="button" (click)="select('1')" class="btn btn-outline-primary click-here" [disabled]="fixture.my_prediction" [ngClass]="{'selected selected-1': fixture.my_prediction && fixture.my_prediction.result === '1'}">{{ fixture.homeTeam.name }}</button>
+              <button type="button" (click)="select('x')" class="btn btn-outline-secondary click-here" [disabled]="fixture.my_prediction" [ngClass]="{'selected selected-x': fixture.my_prediction && fixture.my_prediction.result === 'x'}" >Draw</button>
+              <button type="button" (click)="select('2')" class="btn btn-outline-primary click-here" [disabled]="fixture.my_prediction" [ngClass]="{'selected selected-2': fixture.my_prediction && fixture.my_prediction.result === '2'}">{{ fixture.awayTeam.name }}</button>
             </div>
             <div class="got-it-wrapper" [hidden]="!alreadySelected || !fixture.submitted">
               <label><i class="fa fa-check got-it mr-2" aria-hidden="true"></i>GOT IT!</label>

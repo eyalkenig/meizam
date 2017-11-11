@@ -23,10 +23,29 @@ import { FixtureTeamComponent } from "app/components/widgets/fixture-team/fixtur
 import { AuthenticationService } from "app/services/authentication.service";
 import { LocalStorageService } from "app/services/local-storage.service";
 import { AppActions } from "app/app.acions";
+import { AngularFireModule } from "angularfire2";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { LoginComponent } from "app/components/containers/login/login.component";
+import { AuthGuard } from "app/guards/auth-guard";
+import { AngularFireAuth } from "angularfire2/auth";
+import { LayoutComponent } from "app/components/containers/layout/layout.component";
+import { AuthMethods, AuthProvider, FirebaseUIAuthConfig, FirebaseUIModule, AuthProviderWithCustomConfig } from 'firebaseui-angular';
+import { environment } from "environments/environment";
+
+const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
+  providers: [
+    AuthProvider.Google,
+    AuthProvider.Password
+  ],
+  method: AuthMethods.Popup,
+  tos: ""
+};
 
 @NgModule({
   declarations: [
     AppComponent,
+    LayoutComponent,
+    LoginComponent,
     NextFixturesComponent,
     NextFixtureComponent,
     FixtureTeamComponent
@@ -37,9 +56,14 @@ import { AppActions } from "app/app.acions";
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    NgReduxModule
+    NgReduxModule,
+    AngularFireModule.initializeApp(environment.firebase.config),
+    AngularFireDatabaseModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
   ],
   providers: [
+    AngularFireAuth,
+    AuthGuard,
     NgReduxRouter,
     ApiService,
     RootEpic,
