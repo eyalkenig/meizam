@@ -13,7 +13,7 @@
                 <tr>
                   <td class="align-middle text-center">
                     <div class="fixture-date">
-                      <label class="font-italic">{{ fixture.date }}</label>
+                      <label class="font-italic">{{ fixture.date | date:'short' }}</label>
                     </div>
                     <div class="fixture-leauge">
                         <label>{{ fixture.leauge }}</label>
@@ -36,13 +36,10 @@
             <div [hidden]="!alreadySelected || fixture.submitted || fixture.submitting">
                 <label><i class="fa fa-thumbs-down failed mr-2" aria-hidden="true"></i>we have failed to save :( please try again.</label>
             </div>
-            <div [hidden]="fixture.submitted">
+            <div>
               <button type="button" (click)="select('1')" class="btn btn-outline-primary click-here" [disabled]="fixture.my_prediction" [ngClass]="{'selected selected-1': fixture.my_prediction && fixture.my_prediction.result === '1'}">{{ fixture.homeTeam.name }}</button>
               <button type="button" (click)="select('x')" class="btn btn-outline-secondary click-here" [disabled]="fixture.my_prediction" [ngClass]="{'selected selected-x': fixture.my_prediction && fixture.my_prediction.result === 'x'}" >Draw</button>
               <button type="button" (click)="select('2')" class="btn btn-outline-primary click-here" [disabled]="fixture.my_prediction" [ngClass]="{'selected selected-2': fixture.my_prediction && fixture.my_prediction.result === '2'}">{{ fixture.awayTeam.name }}</button>
-            </div>
-            <div class="got-it-wrapper" [hidden]="!alreadySelected || !fixture.submitted">
-              <label><i class="fa fa-check got-it mr-2" aria-hidden="true"></i>GOT IT!</label>
             </div>
           </div>
         </div>

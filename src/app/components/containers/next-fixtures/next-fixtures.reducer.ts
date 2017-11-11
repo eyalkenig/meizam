@@ -1,4 +1,4 @@
-import { NextFixturesState, INITIAL_STATE_NEXT_FIXTURES } from "../../../app.state";
+import { NextFixturesState, INITIAL_STATE_NEXT_FIXTURES, Prediction, UserPrediction } from "app/app.state";
 import { IAction } from "app/app.module";
 import { NextFixturesActions } from "app/components/containers/next-fixtures/next-fixtures.actions";
 
@@ -17,9 +17,30 @@ export function NextFixturesReducer(lastState: NextFixturesState, action: IActio
     case NextFixturesActions.submitPredictionStarted:
       return updateFixtureSubmitted(lastState, action.payload.fixture.id, getSubmissionState(false, true));
     case NextFixturesActions.submitPredictionSuccess:
-      return updateFixtureSubmitted(lastState, action.payload.fixture.id, getSubmissionState(true, false));
+      const updateValues = [
+        ...getSubmissionState(true, false),
+        {
+          "key": "my_prediction",
+          "value": {
+            fixtureId: action.payload.fixture.id,
+            result: action.payload.result,
+            open: true
+          }
+        }
+      ];
+      return updateFixtureSubmitted(lastState, action.payload.fixture.id, updateValues);
     case NextFixturesActions.submitPredictionFail:
       return updateFixtureSubmitted(lastState, action.payload.prediction.fixture.id, getSubmissionState(false, false));
+    case NextFixturesActions.fetchUserOpenPredictionsSuccess:
+      const raw = lastState.raw.slice(0);
+      const userPredictions: UserPrediction[] = action.payload;
+      userPredictions.forEach(prediction => {
+        const index = raw.findIndex(fixture => fixture.id === prediction.fixtureId);
+        if (index > -1) {
+          raw[index] = { ...raw[index], my_prediction: prediction }
+        }
+      });
+      return { raw };
   }
   return lastState;
 }

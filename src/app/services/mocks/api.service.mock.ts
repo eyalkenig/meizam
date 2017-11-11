@@ -1,16 +1,20 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/of";
-import { Prediction } from "app/app.state";
+import { Prediction, Fixture, UserPrediction } from "app/app.state";
 
 @Injectable()
 export class ApiServiceMock {
 
-  public fetchNextFixtures(): Observable<any> {
-    return Observable.of({});
+  fetchNextFixtures(): Observable<Fixture[]> {
+    return Observable.of([]);
   }
 
-  public submitPrediction(prediction: Prediction): Observable<any> {
+  fetchUserOpenPredictions(userId: string): Observable<UserPrediction[]> {
+    return Observable.of([]);
+  }
+
+  submitPrediction(userId: string, prediction: Prediction): Observable<any> {
     return Observable.of({});
   }
 }
