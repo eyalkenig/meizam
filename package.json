@@ -23,15 +23,19 @@
     "@angular/platform-browser": "^4.3.6",
     "@angular/platform-browser-dynamic": "^4.3.6",
     "@angular/router": "^4.3.6",
+    "angularfire2": "^5.0.0-rc.3",
     "bootstrap": "^4.0.0-beta",
     "core-js": "^2.5.1",
+    "firebase": "^4.6.2",
+    "firebaseui": "^2.4.1",
+    "firebaseui-angular": "^2.4.0",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "redux": "^3.7.2",
     "redux-observable": "^0.16.0",
     "rxjs": "^5.4.3",
     "typeface-open-sans": "0.0.35",
-    "zone.js": "^0.8.17",
-    "font-awesome": "^4.7.0"
+    "zone.js": "^0.8.17"
   },
   "devDependencies": {
     "@angular/cli": "^1.4.1",

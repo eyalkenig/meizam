@@ -1,0 +1,17 @@
+<div class="border">
+  <img class="logo" src="assets/logo.png" />
+  <div class="account">
+    <div class="username">{{ username }}</div>
+    <div (click)="logout()" class="logout">
+      logout
+    </div>
+  </div>
+  <div class='main container-fluid'>
+    <div class='row py-4'>
+      <content class='content col-sm-12 col-md-12'>
+        <router-outlet></router-outlet>
+        <!-- <app-next-fixtures-container></app-next-fixtures-container> -->
+      </content>
+    </div>
+  </div>
+</div>
