@@ -20,7 +20,7 @@ export interface Fixture {
   id: string;
   host: Host;
   leauge: League;
-  time: Date;
+  date: Date;
   homeTeam: Team;
   awayTeam: Team;
   prediction_type: PredictionType;

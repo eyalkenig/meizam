@@ -42,7 +42,7 @@ describe("PredictionsService", () => {
     const fixture: Fixture = {
       id: "an-id",
       leauge: { name: "a league", started_at: new Date() },
-      time: new Date(),
+      date: new Date(),
       homeTeam: { name: "a team", logoUrl: "logo1" },
       awayTeam: { name: "b team", logoUrl: "logo2" },
       host: { name: "a name" },
