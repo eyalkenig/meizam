@@ -34,6 +34,7 @@ import { environment } from "environments/environment";
 import { AngularFirestore, AngularFirestoreModule } from "angularfire2/firestore";
 import { PredictionsService } from "app/services/predictions.service";
 import { CloudApiService } from "app/services/cloud-api.service";
+import { OpenPredictionsComponent } from "app/components/containers/open-predictions/open-predictions.component";
 
 const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
   providers: [
@@ -51,7 +52,8 @@ const firebaseUiAuthConfig: FirebaseUIAuthConfig = {
     LoginComponent,
     NextFixturesComponent,
     NextFixtureComponent,
-    FixtureTeamComponent
+    FixtureTeamComponent,
+    OpenPredictionsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

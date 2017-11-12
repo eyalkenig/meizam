@@ -32,7 +32,7 @@ describe("NextFixtureComponent", () => {
       logoUrl: "http://images.one.co.il/images/teams/logos_111x111/3.gif"
     },
     leauge: { name: "Israeli Winner League", started_at: new Date("03-30-2017 21:00") },
-    time: new Date("10-17-2017 20:00"),
+    date: new Date("10-17-2017 20:00"),
     host: {
       name: "@eyalkenig"
     },

@@ -4,17 +4,23 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build -prod --progress=false"
+  },
+  "engines": {
+    "node": "6.11.1",
+    "npm": "3.10.10"
   },
   "dependencies": {
     "@angular-redux/form": "^6.6.0",
     "@angular-redux/router": "^6.3.1",
     "@angular-redux/store": "^6.5.7",
     "@angular/animations": "^4.3.6",
+    "@angular/cli": "^1.4.1",
     "@angular/common": "^4.3.6",
     "@angular/compiler": "^4.3.6",
     "@angular/core": "^4.3.6",
@@ -26,6 +32,7 @@
     "angularfire2": "^5.0.0-rc.3",
     "bootstrap": "^4.0.0-beta",
     "core-js": "^2.5.1",
+    "express": "^4.16.2",
     "firebase": "^4.6.2",
     "firebaseui": "^2.4.1",
     "firebaseui-angular": "^2.4.0",
