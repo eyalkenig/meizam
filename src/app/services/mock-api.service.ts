@@ -32,5 +32,9 @@ export class MockApiService implements ApiService {
     }
     return this.http.post(`${environment.backend_url}/users/${userId}/predictions`, body);
   }
+
+  createFixture(fixture: Fixture): Observable<any> {
+    return Observable.of({});
+  }
 }
 

@@ -24,11 +24,26 @@ export class NextFixturesService {
     });
   }
 
+  public createFixture(fixture: Fixture): void {
+    this.apiService.createFixture(fixture).subscribe(() => {
+      this.createFixtureSuccess();
+    }, error => {
+      this.createFixtureFail(error);
+    })
+  }
   fetchNextFixutresSuccess(fixtures: Fixture[]): void {
     this.ngRedux.dispatch(this.actions.fetchNextFixturesSuccess(fixtures));
   }
 
   fetchNextFixutresFail(error: string): void {
     this.ngRedux.dispatch(this.actions.fetchNextFixturesFail(error));
+  }
+
+  createFixtureSuccess(): void {
+    this.ngRedux.dispatch(this.actions.createFixtureSuccess());
+  }
+
+  createFixtureFail(error: string): void {
+    this.ngRedux.dispatch(this.actions.createFixtureFail(error));
   }
 }

@@ -39,7 +39,19 @@ export class NextFixturesEpics {
         return this.appActions.doNothing();
       });
 
+    createFixture = action$ => action$.ofType(NextFixturesActions.createFixture)
+      .map(action => {
+        this.nextFixturesService.createFixture(action.payload);
+        return this.appActions.doNothing();
+      });
+
     public getEpics(): any {
-      return [this.fetchNextFixtures, this.fetchOpenPredictions, this.predictionSelected, this.submitPredictionStarted];
+      return [
+        this.fetchNextFixtures,
+        this.fetchOpenPredictions,
+        this.predictionSelected,
+        this.submitPredictionStarted,
+        this.createFixture
+      ];
     }
 }

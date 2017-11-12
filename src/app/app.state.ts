@@ -19,7 +19,7 @@ export enum PredictionType {
 export interface Fixture {
   id: string;
   host: Host;
-  leauge: League;
+  leauge: string;
   date: Date;
   homeTeam: Team;
   awayTeam: Team;

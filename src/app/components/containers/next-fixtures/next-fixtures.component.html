@@ -1,4 +1,12 @@
 <div class="container-fluid">
+  <div>
+    <div class="text-center pb-3">
+      <button class="btn btn-success" (click)="showCreate = true">Create A Game</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="showCreate">
+      <create-fixture class="create-fixture" [host]="host" (fixtureCreated)="create($event)" (close)="showCreate = false"></create-fixture>
+  </div>
   <div class='next-fixtures-container' class="row">
     <next-fixture *ngFor="let nextFixture of nextFixtures$ | async; let i = index" [fixture]="nextFixture" (resultSelected)="resultSelected($event)" class="col-sm"></next-fixture>
   </div>

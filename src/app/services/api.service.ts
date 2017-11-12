@@ -14,5 +14,9 @@ export abstract class ApiService {
   submitPrediction(userId: string, prediction: Prediction): Observable<any> {
     return Observable.of({});
   }
+
+  createFixture(fixture: Fixture): Observable<any> {
+    return Observable.of({});
+  }
 }
 

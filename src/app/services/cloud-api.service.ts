@@ -49,5 +49,10 @@ export class CloudApiService implements ApiService {
       doc(prediction.fixture.id).
       set({result: prediction.result, open: true}));
   }
+
+  createFixture(fixture: Fixture): Observable<any> {
+    return Observable.fromPromise(this.angularFirestore.collection<Fixture>("fixtures").add(fixture));
+  }
+
 }
 
