@@ -51,7 +51,7 @@ describe("NextFixturesService", () => {
           mockNgRedux: MockNgRedux) => {
           const expectedResult: Fixture[] = [{
             id: "an-id",
-            leauge: { name: "a league", started_at: new Date() },
+            leauge: "a league",
             date: new Date(),
             homeTeam: { name: "a team", logoUrl: "logo1" },
             awayTeam: { name: "b team", logoUrl: "logo2" },

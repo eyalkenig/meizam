@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="card mb-3">
+      <div class="card-header">
+          <i class="fa fa-window-close fa-2 close-card pull-right" (click)="closeCard()" aria-hidden="true"></i>
+          <label class="header-text">hosted by you<span class="badge badge-pill badge-warning ml-1">1 X 2 Game</span></label>
+      </div>
+      <div class="card-body">
+          <form class="the-form">
+              <div class="form-group row">
+                <label for="createFixtureHomeTeam" class="col-sm-2 col-form-label">Home Team (1)</label>
+                <input type="text" name="homeTeam" [(ngModel)]="homeTeam" class="form-control col-sm-4" id="createFixtureHomeTeam" placeholder="home team name">
+              <!-- </div> -->
+              <!-- <div class="form-group"> -->
+                <label for="createFixtureHomeTeamLogo" class="col-sm-2 col-form-label">Home Team Logo</label>
+                <input type="text" name="homeTeamLogoUrl" [(ngModel)]="homeTeamLogoUrl" class="form-control col-sm-4" id="createFixtureHomeTeamLogo" placeholder="home team logo url">
+              </div>
+              <div class="form-group row">
+                <label for="createFixtureAwayTeam" class="col-sm-2 col-form-label">Away Team (2)</label>
+                <input type="text" name="awayTeam" [(ngModel)]="awayTeam" class="form-control col-sm-4" id="createFixtureAwayTeam" placeholder="away team name">
+              <!-- </div> -->
+              <!-- <div class="form-group"> -->
+                <label for="createFixtureAwayTeamLogo" class="col-sm-2 col-form-label">Away Team Logo</label>
+                <input type="text" name="awayTeamLogoUrl" [(ngModel)]="awayTeamLogoUrl" class="form-control col-sm-4" id="createFixtureAwayTeamLogo" placeholder="away team logo url">
+              </div>
+              <div class="form-group row">
+                <label for="createFixtureTimeOfGame" class="col-sm-2 col-form-label">Time Of Game</label>
+                <input type="datetime-local" name="fixtureDate" [(ngModel)]="fixtureDate" class="form-control col-sm-4" [value]="today" id="createFixtureTimeOfGame">
+              <!-- </div> -->
+              <!-- <div class="form-group"> -->
+                <label for="createFixtureLeauge" class="col-sm-2 col-form-label">Leauge</label>
+                <input type="text" name="leauge" [(ngModel)]="leauge" class="form-control col-sm-4" id="createFixtureLeauge">
+              </div>
+              <div class="text-center">
+                <button type="submit" (click)="create()" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+      </div>
+  </div>
+  
+</div>

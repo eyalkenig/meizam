@@ -14,6 +14,9 @@ export class NextFixturesActions {
   static submitPredictionFail = "submit prediction fail";
   static fetchUserOpenPredictions = "fetch user open predictions";
   static fetchUserOpenPredictionsSuccess = "fetch user open predictions success";
+  static createFixture = "create fixture";
+  static createFixtureSuccess = "create fixture success";
+  static createFixtureFail = "create fixture fail";
 
   constructor() {}
 
@@ -26,7 +29,6 @@ export class NextFixturesActions {
   fetchNextFixturesStarted(): IAction {
     return { type: NextFixturesActions.fetchNextFixturesStarted };
   }
-
 
   fetchNextFixturesSuccess(fixtures: Fixture[]): IAction {
     return {
@@ -86,4 +88,23 @@ export class NextFixturesActions {
     }
   }
 
+  createFixture(fixture: Fixture): IAction {
+    return {
+      type: NextFixturesActions.createFixture,
+      payload: fixture
+    }
+  }
+
+  createFixtureSuccess(): IAction {
+    return {
+      type: NextFixturesActions.createFixtureSuccess
+    }
+  }
+
+  createFixtureFail(error: string): IAction {
+    return {
+      type: NextFixturesActions.createFixtureSuccess,
+      payload: error
+    }
+  }
 }
